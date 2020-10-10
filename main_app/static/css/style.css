@@ -1,3 +1,72 @@
+/* Base Rules */
+
 body {
-    
-  }
+  display: flex;
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #faf9f9;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 0;
+}
+
+h1 {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+#logo {
+  font-size: 36px;
+  font-family: 'Rajdhani', sans-serif;
+  color: white;
+}
+
+.nav-wrapper {
+  background-color: #555b6e;
+}
+
+.nav-wrapper * {
+  color: white;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.cont {
+  background-color: #bee3db;
+  padding: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 1em;
+}
+
+hr {
+  margin: 0;
+  border-style: solid;
+}
+
+.page-footer {
+  background-color: #555b6e;
+  min-height: 1.5em;
+  padding: 0.7em 0.5em 0.5em 0.5em;
+}
+.page-footer * {
+  color: white;
+}
+
+/* Home Page Rules */
+.page-title {
+  text-align: center;
+}
+
+.page-sub-title {
+  font-size: 24px;
+}
+
+main li{
+  list-style-type: circle !important;
+  list-style-position: inside;
+}
+
+main li::marker{
+  margin: 0;
+}
