@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
+from django.views.generic import CreateView
+from .models import Link
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -9,6 +12,18 @@ def home(request):
 
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+
+class LinkCreate(LoginRequiredMixin, CreateView):
+    model = Link
+    fields = []
+
+    def form_valid(self, form):
+        # Assign the logged in user (self.request.user)
+        form.instance.user = self.request.user  # form.instance is the cat
+        # Let the CreateView do its job as usual
+        return super().form_valid(form)
+
 
 def signup(request):
   error_message = ''
