@@ -1,12 +1,68 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class='cont cont_1'>
-<div class='page-title'><h1>Welcome</h1></div>
-</div>
-<div class='cont cont_2'>
-    <div class='page-title'><h1>Welcome</h1></div>
+<div class='dashboard-container'>
+    <div class='cont cont_1'>
+        <div class='profile-image' style="background-image: url('https://picsum.photos/200/300');"></div>
+        <h3>{{user}}</h3>
+        <p class='profile-info'>{{user.username}}</p>
+        <p class='profile-info'>{{user.email}}</p>
+        <a href="/users/{{user.id}}"><button id='submit-btn' class="btn btn-primary">Edit</button></a>
+        <div style="width: 100%;">
+            <h1>Recent</h1>
+        </div>
+
+        <div class="card summary-card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4" style="max-width: 10px;"></div>
+              <div class="col-md-11">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text"><small class="text-muted">Last updated on: </small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
     </div>
+    <div class='cont cont_2'>
+        <div style="width: 100%;">
+            <h1 class='float-left' style="display: inline-block;">New Links</h1>
+            <a href="/links/create" class='float-right' style="display: inline-block; color: black;"><h1><i class="fas fa-plus-circle"></i></h1></a>
+        </div>
+
+        <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4" style="max-width: 10px;"></div>
+              <div class="col-md-11">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Planned Date: </small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <div style="width: 100%;">
+            <h1>Favorites</h1>
+        </div>
+
+        <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4" style="max-width: 10px;"></div>
+              <div class="col-md-11">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Planned Date: </small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+</div>
     
 
 {% endblock %}
