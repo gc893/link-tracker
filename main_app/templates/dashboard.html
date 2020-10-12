@@ -9,57 +9,73 @@
         <p class='profile-info'>{{user.email}}</p>
         <a href="/users/{{user.id}}"><button id='submit-btn' class="btn btn-primary">Edit</button></a>
         <div style="width: 100%;">
-            <h1>Recent</h1>
+            <h1>Favorites</h1>
         </div>
 
+        {% for link in user.link_set.all %}
+        {% if link.status == 'f' %}
         <div class="card summary-card mb-3">
             <div class="row no-gutters">
-              <div class="col-md-4" style="max-width: 10px;"></div>
+              <div id='marker' class="col-md-4" style="max-width: 10px;"></div>
               <div class="col-md-11">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text"><small class="text-muted">Last updated on: </small></p>
+                    <a href="{{link.address}}" target="_blank"><h5 class="card-title">{{link.title}}</h5></a>
+                    <p class="float-left card-text"><small class="text-muted">Last updated on: {{link.viewed_date}}</small></p>
+                    <p class="float-right card-text"><small><a href="/links/{{link.id}}">Update Link</a></small></p>
                 </div>
               </div>
             </div>
           </div>
+        {% endif %}
+        {% endfor %}
 
     </div>
     <div class='cont cont_2'>
         <div style="width: 100%;">
             <h1 class='float-left' style="display: inline-block;">New Links</h1>
-            <a href="/links/create" class='float-right' style="display: inline-block; color: black;"><h1><i class="fas fa-plus-circle"></i></h1></a>
+            <a href="/users/{{user.id}}/create_link/" class='float-right' style="display: inline-block; color: black;"><h1><i class="fas fa-plus-circle"></i></h1></a>
         </div>
 
+        {% for link in user.link_set.all %}
+        {% if link.status == 'n' %}
         <div class="card mb-3">
             <div class="row no-gutters">
-              <div class="col-md-4" style="max-width: 10px;"></div>
+              <div id='marker' class="col-md-4" style="max-width: 10px;"></div>
               <div class="col-md-11">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Planned Date: </small></p>
+                  <a href="{{link.address}}" target="_blank"><h5 class="card-title">{{link.title}}</h5></a>
+                  <p class="card-text"><small class="text-muted">{{link.tags}}</small></p>
+                  <pre><code class="language-javascript">{{link.code_snippet}}</code></pre>
+                  <p class="float-left card-text"><small class="text-muted">Planned Date: {{link.planned_date}} </small></p>
+                  <p class="float-right card-text"><small><a href="/links/{{link.id}}">Update Link</a></small></p>
                 </div>
               </div>
             </div>
           </div>
+        {% endif %}
+        {% endfor %}
 
         <div style="width: 100%;">
-            <h1>Favorites</h1>
+            <h1>Recent</h1>
         </div>
 
+        {% for link in user.link_set.all %}
+        {% if link.status == 'v' %}
         <div class="card mb-3">
             <div class="row no-gutters">
-              <div class="col-md-4" style="max-width: 10px;"></div>
+              <div id='marker' class="col-md-4" style="max-width: 10px;"></div>
               <div class="col-md-11">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-muted">Planned Date: </small></p>
+                  <a href="{{link.address}}" target="_blank"><h5 class="card-title">{{link.title}}</h5></a>
+                  <pre><code class="language-javascript">{{link.code_snippet}}</code></pre>
+                  <p class="float-left card-text"><small class="text-muted">Planned Date: {{link.planned_date}} </small></p>
+                  <p class="float-right card-text"><small><a href="/links/{{link.id}}">Update Link</a></small></p>
                 </div>
               </div>
             </div>
           </div>
+          {% endif %}
+          {% endfor %}
 
     </div>
 </div>

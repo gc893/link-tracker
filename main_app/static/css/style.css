@@ -13,6 +13,10 @@ h1 {
   font-family: 'Rajdhani', sans-serif;
 }
 
+a {
+  color: black;
+}
+
 #logo {
   font-size: 36px;
   font-family: 'Rajdhani', sans-serif;
@@ -149,6 +153,17 @@ form {
   margin: 0;
 }
 
+pre {
+  padding: 0.5em;
+  background-color: #e1dada;
+  border-radius: 5px;
+  margin: 0.5em;
+}
+
+#marker {
+  background-color: #E0A23E;
+}
+
 /* Media Queries */
 
 @media all and (min-width: 991px) {
@@ -157,6 +172,7 @@ form {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: flex-start;
   }
 
   .cont_1 {

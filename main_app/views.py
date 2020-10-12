@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from .models import Link
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, LinkForm
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
@@ -10,19 +11,30 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 def home(request):
     return render(request, 'home.html')
 
+@login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
 
 
-class LinkCreate(LoginRequiredMixin, CreateView):
-    model = Link
-    fields = []
+@login_required
+def create_link(request, user_id):
+  error_message = ''
+  if request.method == 'POST':
+    form = LinkForm(request.POST)
 
-    def form_valid(self, form):
-        # Assign the logged in user (self.request.user)
-        form.instance.user = self.request.user  # form.instance is the cat
-        # Let the CreateView do its job as usual
-        return super().form_valid(form)
+    if form.is_valid():
+        new_link = form.save(commit=False)
+        new_link.user_id = user_id
+        new_link.save()
+        return redirect('dashboard')
+
+    else:
+        print(form.errors)
+        error_message = 'Invalid sign up - try again'
+
+  form = LinkForm()
+  context = {'link_form': form, 'error_message': error_message}
+  return render(request, 'main_app/link_form.html', context)
 
 
 def signup(request):
