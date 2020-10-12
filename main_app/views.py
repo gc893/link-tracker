@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm
 
@@ -23,6 +23,7 @@ def signup(request):
       login(request, user)
       return redirect('dashboard')
     else:
+      print(form.errors)
       error_message = 'Invalid sign up - try again'
   # A bad POST or a GET request, so render signup.html with an empty form
   form = CustomUserCreationForm()
