@@ -24,10 +24,13 @@
             <div class="form-group"><label for="id_github_project">Github project:</label> <input disabled value='{{link.github_project}}' class="form-control" type="text" name="github_project" maxlength="255" required="" id="id_github_project"></div>
             <div class="form-group"><label for="id_code_snippet">Code snippet:</label> <textarea disabled class="form-control" name="code_snippet" cols="100" rows="10" maxlength="500" required="" id="id_code_snippet">{{link.code_snippet}}</textarea></div>
             
-    <div style="text-align: center; justify-content: center;">
+    <div style="text-align: center; display: inline-block; width: 100%;">
         <a class="float-left" href="/links/{{link.id}}/delete"><button style="background-color: #cb3d3d; border-color: #cb3d3d;" id='submit-btn' class="btn btn-primary">Delete Link</button></a>
         <a class="float-right" href="/links/{{link.id}}/update"><button id='submit-btn' class="btn btn-primary">Edit</button></a>
     </div>
+    <hr />
+    <br>
+    <h1>Notes</h1>
 </div>
 
 {% endblock %}
