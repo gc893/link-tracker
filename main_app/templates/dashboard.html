@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class='dashboard-container'>
-    <div class='cont cont_1'>
+    <div id='fav-container' class='cont cont_1'>
         <div class='profile-image' style="background-image: url('https://picsum.photos/200/300');"></div>
         <h3>{{user}}</h3>
         <p class='profile-info'>{{user.username}}</p>
@@ -34,31 +34,31 @@
         <div style="width: 100%;">
             <h1 class='float-left' style="display: inline-block;">New Links</h1>
             <a href="/users/{{user.id}}/create_link/" class='float-right' style="display: inline-block; color: black;"><h1><i class="fas fa-plus-circle"></i></h1></a>
-        </div>
-
-        {% for link in user.link_set.all %}
-        {% if link.status == 'n' %}
-        <div class="card mb-3">
-            <div class="row no-gutters">
-              <div id='marker' class="col-md-4" style="max-width: 10px;"></div>
-              <div class="col-md-11">
-                <div class="card-body">
-                  <a href="{{link.address}}" target="_blank"><h5 class="card-title">{{link.title}}</h5></a>
-                  <p style="margin: 0.2em;" class="card-text"><small class="text-muted">{{link.tags}}</small></p>
-                  <a href="{{link.github_project}}"><i class="fab fa-github"></i></a>
-                  <pre><code class="language-javascript">{{link.code_snippet}}</code></pre>
-                  <p class="float-left card-text"><small class="text-muted">Planned Date: {{link.planned_date}} </small></p>
-                  <p class="float-right card-text"><small><a href="{% url 'link_detail' link.id %}">Link Details</a></small></p>
+            {% for link in user.link_set.all %}
+            {% if link.status == 'n' %}
+            <div style="width: 100%;" class="card mb-3">
+                <div class="row no-gutters">
+                <div id='marker' class="col-md-4" style="max-width: 10px;"></div>
+                <div class="col-md-11">
+                    <div class="card-body">
+                    <a href="{{link.address}}" target="_blank"><h5 class="card-title">{{link.title}}</h5></a>
+                    <p style="margin: 0.2em;" class="card-text"><small class="text-muted">{{link.tags}}</small></p>
+                    <a href="{{link.github_project}}"><i class="fab fa-github"></i></a>
+                    <pre><code class="language-javascript">{{link.code_snippet}}</code></pre>
+                    <p class="float-left card-text"><small class="text-muted">Planned Date: {{link.planned_date}} </small></p>
+                    <p class="float-right card-text"><small><a href="{% url 'link_detail' link.id %}">Link Details</a></small></p>
+                    </div>
                 </div>
-              </div>
+                </div>
             </div>
-          </div>
-        {% endif %}
-        {% endfor %}
+            {% endif %}
+            {% endfor %}
 
-        <div style="width: 100%;">
-            <h1>Recent</h1>
         </div>
+
+        <div id='new-recent-cont' style="width: 100%;">
+            <h1>Recent</h1>
+        
 
         {% for link in user.link_set.all %}
         {% if link.status == 'v' %}
@@ -79,9 +79,26 @@
           </div>
           {% endif %}
           {% endfor %}
-
+        </div>
     </div>
 </div>
-    
+
+<script>
+    let favCont = document.getElementById('fav-container');
+    let par = document.createElement('p');
+    par.textContent = 'No Favorites added yet.';
+    if(favCont.children.length <= 6){
+        favCont.appendChild(par)
+    }    
+</script>
+<script>
+    let newRecCont = document.getElementById('new-recent-cont');
+    let parr = document.createElement('p');
+    parr.textContent = 'Mark links as viewed to move them to this section.';
+    console.log(newRecCont.children.length)
+    if(newRecCont.children.length <= 1){
+        newRecCont.appendChild(parr)
+    }
+</script>
 
 {% endblock %}

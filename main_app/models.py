@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 from django.contrib.auth.models import AbstractUser
 
 TYPES = (
@@ -27,9 +28,9 @@ class Link(models.Model):
     title = models.CharField(max_length=150)
     link_type = models.CharField(max_length=1, choices=TYPES, default=TYPES[0][0])
     tags = models.CharField(max_length=150, null=True)
-    created_date = models.DateField('Created on')
+    created_date = models.DateField('Created on', default=date.today)
     planned_date = models.DateField('Planned for', null=True)
-    viewed_date = models.DateField('Viewed on')
+    viewed_date = models.DateField('Viewed on', default=date.today)
     github_project = models.CharField(max_length=255, null=True)
     code_snippet = models.TextField(max_length=500, null=True)
     status = models.CharField(max_length=1, choices=STATUS, default=STATUS[0][0])
