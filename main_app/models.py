@@ -26,16 +26,19 @@ class Link(models.Model):
     address = models.CharField(max_length=255)
     title = models.CharField(max_length=150)
     link_type = models.CharField(max_length=1, choices=TYPES, default=TYPES[0][0])
-    tags = models.CharField(max_length=150)
+    tags = models.CharField(max_length=150, null=True)
     created_date = models.DateField('Created on')
-    planned_date = models.DateField('Planned for')
+    planned_date = models.DateField('Planned for', null=True)
     viewed_date = models.DateField('Viewed on')
-    github_project = models.CharField(max_length=255)
-    code_snippet = models.TextField(max_length=500)
+    github_project = models.CharField(max_length=255, null=True)
+    code_snippet = models.TextField(max_length=500, null=True)
     status = models.CharField(max_length=1, choices=STATUS, default=STATUS[0][0])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.title}"
+
+    class Meta:
+        ordering = ['-created_date']
 
 # Create your models here.
