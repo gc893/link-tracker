@@ -16,7 +16,13 @@
         {% if link.status == 'f' %}
         <div class="card summary-card mb-3">
             <div class="row no-gutters">
-              <div id='marker' class="col-md-4" style="max-width: 10px;"></div>
+              {% if link.link_type == 'd' %}
+              <div class="col-md-4" style="max-width: 10px; background-color: #E0A23E;"></div>
+              {% elif link.link_type == 't' %}
+              <div class="col-md-4" style="max-width: 10px; background-color: #89B0AE;"></div>
+              {% else %}
+              <div class="col-md-4" style="max-width: 10px; background-color: #555B6E;"></div>
+              {% endif %}
               <div class="col-md-11">
                 <div class="card-body">
                     <a href="{{link.address}}" target="_blank"><h5 class="card-title">{{link.title}}</h5></a>
@@ -38,7 +44,13 @@
             {% if link.status == 'n' %}
             <div style="width: 100%;" class="card mb-3">
                 <div class="row no-gutters">
-                <div id='marker' class="col-md-4" style="max-width: 10px;"></div>
+                {% if link.link_type == 'd' %}
+                    <div class="col-md-4" style="max-width: 10px; background-color: #E0A23E;"></div>
+                {% elif link.link_type == 't' %}
+                    <div class="col-md-4" style="max-width: 10px; background-color: #89B0AE;"></div>
+                {% else %}
+                    <div class="col-md-4" style="max-width: 10px; background-color: #555B6E;"></div>
+                {% endif %}
                 <div class="col-md-11">
                     <div class="card-body">
                     <a href="{{link.address}}" target="_blank"><h5 class="card-title">{{link.title}}</h5></a>
@@ -64,7 +76,13 @@
         {% if link.status == 'v' %}
         <div class="card mb-3">
             <div class="row no-gutters">
-              <div id='marker' class="col-md-4" style="max-width: 10px;"></div>
+            {% if link.link_type == 'd' %}
+                <div class="col-md-4" style="max-width: 10px; background-color: #E0A23E;"></div>
+            {% elif link.link_type == 't' %}
+                <div class="col-md-4" style="max-width: 10px; background-color: #89B0AE;"></div>
+            {% else %}
+                <div class="col-md-4" style="max-width: 10px; background-color: #555B6E;"></div>
+            {% endif %}
               <div class="col-md-11">
                 <div class="card-body">
                   <a href="{{link.address}}" target="_blank"><h5 class="card-title">{{link.title}}</h5></a>
