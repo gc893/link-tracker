@@ -84,4 +84,25 @@
     }
 </script>
 
+<script>
+    let updatedOn = document.getElementById('id_viewed_date');
+    let today = new Date()
+    let dd = today.getDate()
+    let mm = today.getMonth() +1
+    let yyyy = today.getFullYear()
+    if (mm.toString().length < 2){
+        if (dd.toString().length < 2){
+            updatedOn.value = `${yyyy}-0${mm}-0${dd}`;
+        } else {
+            updatedOn.value = `${yyyy}-0${mm}-${dd}`;
+        }
+    } else {
+        if (dd.toString().length < 2){
+            updatedOn.value = `${yyyy}-${mm}-0${dd}`;
+        } else {
+            updatedOn.value = `${yyyy}-${mm}-${dd}`;
+        }
+    }
+</script>
+
 {% endblock %}

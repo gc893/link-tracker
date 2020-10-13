@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from .models import Link
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm, LinkForm
@@ -47,6 +47,10 @@ class LinkUpdate(UpdateView):
     model = Link
     fields = ('address', 'title', 'link_type', 'tags', 'created_date', 'planned_date', 'viewed_date', 'github_project', 'code_snippet', 'status')
     success_url = '/dashboard/'
+
+class LinkDelete(DeleteView):
+    model = Link
+    success_url = '/dashboard'
 
 def signup(request):
   error_message = ''

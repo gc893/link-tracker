@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="cont">
+    <form method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <button type="submit" class="btn btn-primary" id='submit-btn'>Submit</button>
+        <a style="display: inline-block; text-align: center;" href="/links/{{link.id}}">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}
