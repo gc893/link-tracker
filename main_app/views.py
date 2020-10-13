@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
-from .models import Link
+from .models import Link, User
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm, LinkForm
 from django.contrib.auth.decorators import login_required
@@ -71,3 +71,8 @@ def signup(request):
   form = CustomUserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+class UserUpdate(LoginRequiredMixin, UpdateView):
+  model = User
+  fields = ('username', 'first_name', 'last_name', 'email', 'avatar')
+  success_url = '/dashboard'
