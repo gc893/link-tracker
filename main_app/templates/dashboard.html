@@ -61,7 +61,7 @@
                     <p style="margin: 0.2em;" class="card-text"><small class="text-muted">{{link.tags}}</small></p>
                     <a href="{{link.github_project}}"><i class="fab fa-github"></i></a>
                     <pre><code class="language-javascript">{{link.code_snippet}}</code></pre>
-                    {% if link.planned_date > today %}
+                    {% if link.planned_date < today %}
                     <p class="float-left card-text"><small class="text-muted" style="color: red !important;">Planned Date: {{link.planned_date}} </small></p>
                     {% else %}
                     <p class="float-left card-text"><small class="text-muted">Planned Date: {{link.planned_date}} </small></p>
