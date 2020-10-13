@@ -32,9 +32,9 @@
                     </select>
                 </div>
                 <div class="form-group"><label for="id_tags">Tags:</label> <input class="form-control" type="text" name="tags" maxlength="150" required id="id_tags"></div>
-                <div class="form-group"><label for="id_created_date">Created on:</label> <input class="form-control" type="text" name="created_date" required id="id_created_date" placeholder="YYYY-MM-DD"></div>
-                <div class="form-group"><label for="id_planned_date">Planned for:</label> <input class="form-control" type="text" name="planned_date" required id="id_planned_date" placeholder="YYYY-MM-DD"></div>
-                <div class="form-group"><label for="id_viewed_date">Viewed on:</label> <input class="form-control" type="text" name="viewed_date" required id="id_viewed_date" placeholder="YYYY-MM-DD"></div>
+                <div class="form-group"><label for="id_created_date">Created on:</label> <input class="form-control" type="date" name="created_date" required id="id_created_date" placeholder="YYYY-MM-DD"></div>
+                <div class="form-group"><label for="id_planned_date">Planned for:</label> <input class="form-control" type="date" name="planned_date" required id="id_planned_date" placeholder="YYYY-MM-DD"></div>
+                <div class="form-group"><label for="id_viewed_date">Viewed on:</label> <input class="form-control" type="date" name="viewed_date" required id="id_viewed_date" placeholder="YYYY-MM-DD"></div>
                 <div class="form-group"><label for="id_github_project">Github project:</label> <input class="form-control" type="text" name="github_project" maxlength="255" required id="id_github_project"></div>
                 <div class="form-group"><label for="id_code_snippet">Code snippet:</label> <textarea class="form-control" name="code_snippet" cols="100" rows="10" required maxlength="500" id="id_code_snippet"></textarea></div>
                 <div class="form-group"><label for="id_status">Status:</label>
@@ -52,5 +52,36 @@
         </div>
     {% endif %}
 </div>
+
+<script>
+    let createdDateEl = document.getElementById('id_created_date');
+    let plannedDateEl = document.getElementById('id_planned_date');
+    let viewedDateEl = document.getElementById('id_viewed_date');
+    let today = new Date()
+    let dd = today.getDate()
+    let mm = today.getMonth() +1
+    let yyyy = today.getFullYear()
+    if (mm.toString().length < 2){
+        if (dd.toString().length < 2){
+            createdDateEl.value = `${yyyy}-0${mm}-0${dd}`;
+            plannedDateEl.value = `${yyyy}-0${mm}-0${dd}`;
+            viewedDateEl.value = `${yyyy}-0${mm}-0${dd}`;
+        } else {
+            createdDateEl.value = `${yyyy}-0${mm}-${dd}`;
+            plannedDateEl.value = `${yyyy}-0${mm}-${dd}`;
+            viewedDateEl.value = `${yyyy}-0${mm}-${dd}`;
+        }
+    } else {
+        if (dd.toString().length < 2){
+            createdDateEl.value = `${yyyy}-${mm}-0${dd}`;
+            plannedDateEl.value = `${yyyy}-${mm}-0${dd}`;
+            viewedDateEl.value = `${yyyy}-${mm}-0${dd}`;
+        } else {
+            createdDateEl.value = `${yyyy}-${mm}-${dd}`;
+            plannedDateEl.value = `${yyyy}-${mm}-${dd}`;
+            viewedDateEl.value = `${yyyy}-${mm}-${dd}`;
+        }
+    }
+</script>
 
 {% endblock %}
