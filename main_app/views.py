@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from .forms import CustomUserCreationForm, LinkForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import date
 
 # Create your views here.
 
@@ -14,7 +15,7 @@ def home(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'dashboard.html', {'today': date.today()})
 
 
 @login_required

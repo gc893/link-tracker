@@ -3,7 +3,11 @@
 
 <div class='dashboard-container'>
     <div id='fav-container' class='cont cont_1'>
+        {% if user.avatar %}
+            <div class='profile-image' style="background-image: url({{user.avatar}});"></div>
+        {% else %}
         <div class='profile-image' style="background-image: url('https://picsum.photos/200/300');"></div>
+        {% endif %}
         <h3>{{user}}</h3>
         <p class='profile-info'>{{user.username}}</p>
         <p class='profile-info'>{{user.email}}</p>
@@ -57,7 +61,11 @@
                     <p style="margin: 0.2em;" class="card-text"><small class="text-muted">{{link.tags}}</small></p>
                     <a href="{{link.github_project}}"><i class="fab fa-github"></i></a>
                     <pre><code class="language-javascript">{{link.code_snippet}}</code></pre>
+                    {% if link.planned_date > today %}
+                    <p class="float-left card-text"><small class="text-muted" style="color: red !important;">Planned Date: {{link.planned_date}} </small></p>
+                    {% else %}
                     <p class="float-left card-text"><small class="text-muted">Planned Date: {{link.planned_date}} </small></p>
+                    {% endif %}
                     <p class="float-right card-text"><small><a href="{% url 'link_detail' link.id %}">Link Details</a></small></p>
                     </div>
                 </div>
