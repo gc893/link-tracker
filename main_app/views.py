@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import DetailView
+from django.views.generic.edit import UpdateView
 from .models import Link
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm, LinkForm
@@ -36,6 +37,15 @@ def create_link(request, user_id):
   context = {'link_form': form, 'error_message': error_message}
   return render(request, 'main_app/link_form.html', context)
 
+@login_required
+def link_detail(request, link_id):
+    link = Link.objects.get(id=link_id)
+    return render(request, 'main_app/detail.html', {'link': link})
+
+class LinkUpdate(UpdateView):
+    model = Link
+    fields = ('address', 'title', 'link_type', 'tags', 'created_date', 'planned_date', 'viewed_date', 'github_project', 'code_snippet', 'status')
+    success_url = '/dashboard/'
 
 def signup(request):
   error_message = ''

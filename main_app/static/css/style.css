@@ -164,6 +164,10 @@ pre {
   background-color: #E0A23E;
 }
 
+.form-control:disabled {
+  background-color: white;
+}
+
 /* Media Queries */
 
 @media all and (min-width: 991px) {

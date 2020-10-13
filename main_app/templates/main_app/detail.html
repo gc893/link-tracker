@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class='cont'>
+<h1><a href="/dashboard"><i class="fas fa-chevron-left"></i></a> &nbsp;&nbsp;{{link.title}}</h1>
+
+<div class="form-group"><label for="id_address">Address:</label> <input disabled value='{{link.address}}' class="form-control" type="text" name="address" maxlength="255" required="" id="id_address"></div>
+            <div class="form-group"><label for="id_title">Title:</label> <input disabled value='{{link.title}}' class="form-control" type="text" name="title" maxlength="150" required="" id="id_title"></div>
+            {% if link.link_type == 'd' %}
+            <div class="form-group"><label for="id_link_type">Link type:</label> <input disabled value='Documentation' class="form-control" type="text" name="link_type" maxlength="150" required="" id="id_link_type"></div>
+            {% elif link.link_type == 't' %}
+            <div class="form-group"><label for="id_link_type">Link type:</label> <input disabled value='Tutorial' class="form-control" type="text" name="link_type" maxlength="150" required="" id="id_link_type"></div>
+            {% else %}
+            <div class="form-group"><label for="id_link_type">Link type:</label> <input disabled value='Support Article' class="form-control" type="text" name="link_type" maxlength="150" required="" id="id_link_type"></div>
+            {% endif %}
+            <div class="form-group"><label for="id_tags">Tags:</label> <input disabled value='{{link.tags}}' class="form-control" type="text" name="tags" maxlength="150" required="" id="id_tags"></div>
+            <div class="form-group"><label for="id_created_date">Created on:</label> <input disabled value='{{link.created_date}}' class="form-control" type="text" name="created_date" required="" id="id_created_date"></div>
+            <div class="form-group"><label for="id_planned_date">Planned for:</label> <input disabled value='{{link.planned_date}}' class="form-control" type="text" name="planned_date" required="" id="id_planned_date"></div>
+            <div class="form-group"><label for="id_viewed_date">Viewed on:</label> <input disabled value='{{link.viewed_date}}' class="form-control" type="text" name="viewed_date" required="" id="id_viewed_date"></div>
+            <div class="form-group"><label for="id_github_project">Github project:</label> <input disabled value='{{link.github_project}}' class="form-control" type="text" name="github_project" maxlength="255" required="" id="id_github_project"></div>
+            <div class="form-group"><label for="id_code_snippet">Code snippet:</label> <textarea disabled class="form-control" name="code_snippet" cols="100" rows="10" maxlength="500" required="" id="id_code_snippet">{{link.code_snippet}}</textarea></div>
+            {% if link.status == 'n' %}
+            <div class="form-group"><label for="id_status">Status:</label> <input disabled value='New' class="form-control" type="text" name="link_type" maxlength="150" required="" id="id_status"></div>
+            {% elif link.status == 'f' %}
+            <div class="form-group"><label for="id_status">Status:</label> <input disabled value='Favorite' class="form-control" type="text" name="link_type" maxlength="150" required="" id="id_status"></div>
+            {% else %}
+            <div class="form-group"><label for="id_status">Status:</label> <input disabled value='Viewed' class="form-control" type="text" name="link_type" maxlength="150" required="" id="id_status"></div>
+            {% endif %}
+
+
+<div style="text-align: center;"><a href="/links/{{link.id}}/update"><button id='submit-btn' class="btn btn-primary">Edit</button></a></div>
+</div>
+
+{% endblock %}
