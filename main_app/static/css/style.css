@@ -144,10 +144,6 @@ form {
   max-width: 626px;
 }
 
-.card-body {
-  padding-right: 0;
-}
-
 .profile-info {
   margin: 0;
 }
@@ -197,6 +193,10 @@ pre {
 
   .card {
     max-width: unset;
+  }
+
+  .card-body {
+    padding-right: 0;
   }
 
 }
