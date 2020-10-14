@@ -14,6 +14,12 @@ STATUS = (
     ('v', 'Viewed')
 )
 
+NOTE_TYPE = (
+    ('p', 'Possitive'),
+    ('n', 'Negative'),
+    ('q', 'Question')
+)
+
 class User(AbstractUser):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -41,5 +47,13 @@ class Link(models.Model):
 
     class Meta:
         ordering = ['-created_date']
+
+class Note(models.Model):
+    title = models.CharField(max_length=150)
+    content = models.TextField(max_length=500)
+    note_type = models.CharField(max_length=1, choices=NOTE_TYPE, default=NOTE_TYPE[0][0])
+    link = models.ForeignKey(Link, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
 # Create your models here.
