@@ -127,6 +127,7 @@ form {
   flex-direction: column;
   align-items: center;
   min-width: 345px;
+  max-width: 100%;
 }
 
 .cont_2 {
@@ -134,10 +135,7 @@ form {
   flex-direction: column;
   align-items: center;
   min-width: 345px;
-}
-
-.summary-card {
-  min-width: 390px;
+  max-width: 100%;
 }
 
 .card {
@@ -193,6 +191,10 @@ pre {
   .summary-card {
     min-width: unset;
     max-width: 345px;
+  }
+
+  .card {
+    max-width: unset;
   }
 
 }
