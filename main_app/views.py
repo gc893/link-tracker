@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
-from .models import Link, User
+from .models import Link, User, Note
 from django.contrib.auth import login
-from .forms import CustomUserCreationForm, LinkForm
+from .forms import CustomUserCreationForm, LinkForm, NoteForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import date
@@ -40,17 +40,49 @@ def create_link(request, user_id):
 
 @login_required
 def link_detail(request, link_id):
+    positives = 0
+    negatives = 0
+    questions = 0
     link = Link.objects.get(id=link_id)
-    return render(request, 'main_app/detail.html', {'link': link})
+    note_form = NoteForm()
+    notes = Note.objects.filter(link=link_id)
+    for note in notes:
+        if note.note_type == 'p':
+            positives += 1
+        elif note.note_type == 'n':
+            negatives += 1
+        else:
+            questions += 1
+    return render(request, 'main_app/detail.html', {'link': link, 'note_form': note_form, 'possitives': positives, 'negatives': negatives, 'questions': questions})
 
-class LinkUpdate(UpdateView):
+class LinkUpdate(LoginRequiredMixin, UpdateView):
     model = Link
     fields = ('address', 'title', 'link_type', 'tags', 'created_date', 'planned_date', 'viewed_date', 'github_project', 'code_snippet', 'status')
     success_url = '/dashboard/'
 
-class LinkDelete(DeleteView):
+class LinkDelete(LoginRequiredMixin, DeleteView):
     model = Link
     success_url = '/dashboard'
+
+@login_required
+def CreateNote(request, user_id, link_id):
+  # create a ModelForm instance using the data in request.POST
+  form = NoteForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the cat_id assigned
+    new_note = form.save(commit=False)
+    new_note.user_id = user_id
+    new_note.link_id = link_id
+    new_note.save()
+  return redirect('link_detail', link_id=link_id)
+
+@login_required
+def DeleteNote(request,link_id, note_id):
+    Note.objects.filter(id= note_id).delete()
+    success_url = f'/links/{link_id}'
+    return redirect(success_url)
 
 def signup(request):
   error_message = ''
