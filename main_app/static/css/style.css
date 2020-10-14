@@ -189,6 +189,8 @@ pre {
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
+    max-width: unset;
+    width: 100%;
   }
 
   .cont_1 {
