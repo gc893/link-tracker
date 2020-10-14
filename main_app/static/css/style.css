@@ -110,7 +110,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 100%;
+  max-width: 100%;
 }
 
 .profile-image {
@@ -127,6 +127,7 @@ form {
   flex-direction: column;
   align-items: center;
   min-width: 345px;
+  width: 100%;
   max-width: 100%;
 }
 
@@ -186,6 +187,7 @@ pre {
   .cont_2 {
     flex: 3 0 auto;
     margin: 1em;
+    max-width: 1134px;
   }
 
   .summary-card {
