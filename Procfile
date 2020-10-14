@@ -1,1 +1,1 @@
-web: gunicorn linktracker.wsgi
+web: gunicorn linkTracker.wsgi
