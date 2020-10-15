@@ -6,15 +6,48 @@ from django.contrib.auth import login
 from .forms import CustomUserCreationForm, LinkForm, NoteForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from datetime import date
+from django.utils.safestring import mark_safe
+from datetime import date, datetime, timedelta
+from .utils import Calendar
+import calendar as calModule
+
+def get_date(req_day):
+    if req_day:
+        year, month = (int(x) for x in req_day.split('-'))
+        return date(year, month, day=1)
+    return datetime.today()
+
+def prev_month(d):
+    first = d.replace(day=1)
+    prev_month = first - timedelta(days=1)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
+
+def next_month(d):
+    days_in_month = calModule.monthrange(d.year, d.month)[1]
+    last = d.replace(day=days_in_month)
+    next_month = last + timedelta(days=1)
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    return month
 
 # Create your views here.
 
 def home(request):
     return render(request, 'home.html')
 
-class Search(ListView):
+class Search(LoginRequiredMixin, ListView):
     model = Link
+
+@login_required
+def calendar(request, month=None):
+    # use today's date for the calendar
+    d = get_date(request.GET.get('day', None))
+    m = get_date(request.GET.get('month', None))
+    # Instantiate our calendar class with today's year and date
+    cal = Calendar(d.year, d.month)
+    html_cal = cal.formatmonth(withyear=True)
+    context = {'today': date.today(), 'calendar': mark_safe(html_cal), 'prev_month': prev_month(m), 'next_month': next_month(m)}
+    return render(request, 'calendar.html', context)
 
 @login_required
 def dashboard(request):
