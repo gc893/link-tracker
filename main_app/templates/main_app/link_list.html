@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="cont" style="width: 100%;">
+    <h1>Link Database</h1>
+    {% for link in link_list %}
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                {% if link.link_type == 'd' %}
+                    <div class="col-md-4" style="max-width: 10px; background-color: #E0A23E;"></div>
+                {% elif link.link_type == 't' %}
+                    <div class="col-md-4" style="max-width: 10px; background-color: #89B0AE;"></div>
+                {% else %}
+                    <div class="col-md-4" style="max-width: 10px; background-color: #555B6E;"></div>
+                {% endif %}
+                <div class="col-md-11">
+                    <div class="card-body">
+                    <a href="{{link.address}}" target="_blank"><h5 class="card-title">{{link.title}}</h5></a>
+                    <p style="margin: 0.2em;" class="card-text"><small class="text-muted">{{link.tags}}</small></p>
+                    <a href="{{link.github_project}}"><i class="fab fa-github"></i></a>
+                    <pre><code class="language-javascript">{{link.code_snippet}}</code></pre>
+                    <p style="margin-bottom: 1em;" class="float-right card-text"><small><a href="{% url 'link_detail' link.id %}">Link Details</a></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

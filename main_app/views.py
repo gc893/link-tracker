@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView
+from django.views.generic import DetailView , ListView
 from django.views.generic.edit import UpdateView, DeleteView
 from .models import Link, User, Note
 from django.contrib.auth import login
@@ -13,10 +13,12 @@ from datetime import date
 def home(request):
     return render(request, 'home.html')
 
+class Search(ListView):
+    model = Link
+
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html', {'today': date.today()})
-
 
 @login_required
 def create_link(request, user_id):
