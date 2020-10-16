@@ -4,15 +4,16 @@ from .models import Link
 
 
 class Calendar(HTMLCalendar):
-	def __init__(self, year=None, month=None):
+	def __init__(self, year=None, month=None, user=None):
 		self.year = year
 		self.month = month
+		self.user = user
 		super(Calendar, self).__init__()
 
 	# formats a day as a td
 	# filter events by day
 	def formatday(self, day, links):
-		links_per_day = links.filter(planned_date__day=day)
+		links_per_day = links.filter(planned_date__day=day, user=self.user)
 		d = ''
 		for link in links_per_day:
 			d += f'<li><a href="{link.address}" target="_blank">{link.title}</a></li>'

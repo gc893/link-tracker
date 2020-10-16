@@ -44,7 +44,7 @@ def calendar(request, month=None):
     d = get_date(request.GET.get('day', None))
     m = get_date(request.GET.get('month', None))
     # Instantiate our calendar class with today's year and date
-    cal = Calendar(d.year, d.month)
+    cal = Calendar(d.year, d.month, request.user.id)
     html_cal = cal.formatmonth(withyear=True)
     context = {'today': date.today(), 'calendar': mark_safe(html_cal), 'prev_month': prev_month(m), 'next_month': next_month(m)}
     return render(request, 'calendar.html', context)
