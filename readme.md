@@ -39,6 +39,7 @@ The app will also let users see other people's links (but won't let them edit or
 
 - Shahzad Khan, David Stinson and Ben Manley for tutorials and deployment process
 - [Hui Wen for Calendar development](https://www.huiwenteo.com/normal/2018/07/29/django-calendar-ii.html)
+- [Mohammad Abdul Mohaiman for animated background](https://codepen.io/mohaiman/pen/MQqMyo?editors=1100)
 
 ## Wirefreames To-Dos and ERDs
 
