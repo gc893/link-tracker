@@ -10,8 +10,6 @@
 
 ![](https://i.imgur.com/58I0nXo.png)
 
-![](https://i.imgur.com/WcgG19N.png)
-
 ![](https://i.imgur.com/EtWBxkO.png)
 
 ## Objectives
@@ -59,5 +57,5 @@ The app will also let users see other people's links (but won't let them edit or
 ## Stretch Goals
 
 - Improve search page
-- Add navigation on the calendar to see other months
+- Add a calendar view to track when each link is planned to be reviewed
 - add pagination on the dashboard
