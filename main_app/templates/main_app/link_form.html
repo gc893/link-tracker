@@ -55,7 +55,6 @@
 
 <script>
     let createdDateEl = document.getElementById('id_created_date');
-    let plannedDateEl = document.getElementById('id_planned_date');
     let viewedDateEl = document.getElementById('id_viewed_date');
     let today = new Date()
     let dd = today.getDate()
@@ -63,44 +62,27 @@
     let yyyy = today.getFullYear()
     if (mm.toString().length < 2){
         if (dd.toString().length < 2){
-            createdDateEl.value = `${yyyy}-0${mm}-0${dd}`;
-            plannedDateEl.value = `${yyyy}-0${mm}-0${dd}`;
+            if(!createdDateEl.value){
+                createdDateEl.value = `${yyyy}-0${mm}-0${dd}`;
+            }
             viewedDateEl.value = `${yyyy}-0${mm}-0${dd}`;
         } else {
-            createdDateEl.value = `${yyyy}-0${mm}-${dd}`;
-            plannedDateEl.value = `${yyyy}-0${mm}-${dd}`;
+            if(!createdDateEl.value){
+                createdDateEl.value = `${yyyy}-0${mm}-${dd}`;
+            }
             viewedDateEl.value = `${yyyy}-0${mm}-${dd}`;
         }
     } else {
         if (dd.toString().length < 2){
-            createdDateEl.value = `${yyyy}-${mm}-0${dd}`;
-            plannedDateEl.value = `${yyyy}-${mm}-0${dd}`;
+            if(!createdDateEl.value){
+                createdDateEl.value = `${yyyy}-${mm}-0${dd}`;
+            }
             viewedDateEl.value = `${yyyy}-${mm}-0${dd}`;
         } else {
-            createdDateEl.value = `${yyyy}-${mm}-${dd}`;
-            plannedDateEl.value = `${yyyy}-${mm}-${dd}`;
+            if(!createdDateEl.value){
+                createdDateEl.value = `${yyyy}-${mm}-${dd}`;
+            }
             viewedDateEl.value = `${yyyy}-${mm}-${dd}`;
-        }
-    }
-</script>
-
-<script>
-    let updatedOn = document.getElementById('id_viewed_date');
-    let today = new Date()
-    let dd = today.getDate()
-    let mm = today.getMonth() +1
-    let yyyy = today.getFullYear()
-    if (mm.toString().length < 2){
-        if (dd.toString().length < 2){
-            updatedOn.value = `${yyyy}-0${mm}-0${dd}`;
-        } else {
-            updatedOn.value = `${yyyy}-0${mm}-${dd}`;
-        }
-    } else {
-        if (dd.toString().length < 2){
-            updatedOn.value = `${yyyy}-${mm}-0${dd}`;
-        } else {
-            updatedOn.value = `${yyyy}-${mm}-${dd}`;
         }
     }
 </script>

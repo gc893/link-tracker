@@ -1,7 +1,14 @@
 /* Calendar CSS */
 
+@media screen and (max-width: 550px) {
+  .calendar {
+      display: none !important;
+  }
+}
+
 .calendar {
-  width: 98%;
+  width: 100%;
+  max-width: 100%;
   margin: auto;
   font-size: 13px;
 }
